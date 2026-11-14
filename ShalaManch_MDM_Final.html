@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShalaManch | विद्यालयी कार्यों का डिजिटल मंच</title>
+<meta name="description" content="ShalaManch - MDM Bill Generator, PDF Tools, Image Tools और विद्यालयी डिजिटल utilities.">
+<meta name="theme-color" content="#6d28d9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js">document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module">document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+<style>
+:root{--p:#6d28d9;--p2:#9333ea;--bg:#f5f3ff;--card:#fff;--ink:#1f2937;--muted:#6b7280;--line:#e8e3f2;--soft:#f3efff;--ok:#65b741}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7f4ff,#f5f3fa 55%,#faf9fd);font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;color:var(--ink)}
+.top{background:linear-gradient(135deg,#5b21b6,#7c3aed 55%,#a855f7);color:#fff;padding:18px 12px 16px;text-align:center}
+.logo{width:58px;height:58px;margin:auto;border-radius:17px;background:#ffffff20;border:1px solid #ffffff38;display:grid;place-items:center;font-size:31px;box-shadow:0 8px 24px #3b076455}
+.top h1{font-size:25px;margin:7px 0 0}.tag{font-size:12px;opacity:.95}.welcome{max-width:680px;margin:13px auto 0;padding:9px 12px;border-radius:14px;background:#ffffff19;border:1px solid #ffffff26;font-size:13px}
+.nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;gap:7px;overflow:auto;padding:7px 10px}.nav button{border:0;background:#f2eff8;color:#374151;border-radius:9px;padding:8px 12px;white-space:nowrap;font-weight:700}.nav button.active{background:var(--p);color:#fff}
+.wrap{max-width:1080px;margin:auto;padding:14px 12px 35px}.page{display:none}.page.active{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 4px 16px #4c1d9510}.hero{padding:17px}.hero h2{margin:0 0 5px;font-size:21px}.muted{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tool{min-height:150px}.icon{font-size:26px}.tool h3{margin:7px 0 4px;font-size:16px}
+.btn{border:0;border-radius:9px;padding:9px 13px;font-weight:750;cursor:pointer;background:var(--p);color:#fff}.btn.secondary{background:#eee9f8;color:#4c1d95}.btn.danger{background:#fee2e2;color:#991b1b}.btn.green{background:#16803c}.btn:active{transform:translateY(1px)}
+input,select{width:100%;border:1px solid #ddd8e9;border-radius:9px;padding:9px 10px;background:#fff;color:#222;font-size:14px}label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.field{margin-bottom:8px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-title h2{font-size:18px;margin:0}
+table{width:100%;border-collapse:collapse;font-size:12px}th{background:#f4f0fa}th,td{padding:7px;border-bottom:1px solid #eee;text-align:right}th:nth-child(2),td:nth-child(2){text-align:left}
+.bill-form{border:1px solid var(--line);border-radius:14px;padding:11px;margin:10px 0}.bill-head{display:flex;justify-content:space-between;gap:10px}.bill-head h3{margin:0;font-size:14px}.bill-total{font-weight:800;color:#4c1d95;font-size:18px}.totalrow{font-weight:800;background:#faf7ff}.grand{background:linear-gradient(135deg,#f7f0ff,#fff);text-align:center;padding:16px;border-radius:16px;border:1px solid #e8dcfb}.grand strong{display:block;font-size:31px;color:#5b21b6}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.coming{background:linear-gradient(135deg,#fff,#f7f1ff);border:1px solid #e6daf8}.soon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.soon{padding:13px;border:1px dashed #d8c8ef;border-radius:14px;background:#fff}.soon b{display:block}.badge{display:inline-block;font-size:10px;padding:3px 7px;border-radius:20px;background:#eee8fb;color:#6d28d9;margin-top:6px;font-weight:800}
+.notice{padding:10px;border-radius:12px;background:#f7f4ff;color:#5b5566;font-size:12px}
+footer{text-align:center;padding:28px 10px;color:#777;font-size:12px}
+#rates,#norms{display:none}.hidden{display:none!important}
+.tool-result{margin-top:8px;font-size:12px;color:#555}.progress{height:6px;border-radius:9px;background:#eee;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6d28d9,#a855f7)}
+@media(max-width:720px){.grid,.soon-grid{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.wrap{padding:9px}.top h1{font-size:23px}.card{border-radius:15px}.bill-head{align-items:flex-start}table{font-size:11px}}
+@media print{@page{size:A4;margin:12mm}.top,.nav,.no-print,#home,#pdf,#image,#soon,footer{display:none!important}.wrap{max-width:none;padding:0}.page{display:none!important}.page.active{display:block!important}.card{box-shadow:none;border:0;padding:0;margin:0}.bill-form{break-inside:avoid;page-break-inside:avoid;border:1px solid #777;border-radius:0;margin:0 0 9mm;padding:7mm}.bill-form table{font-size:10pt}.bill-form th,.bill-form td{padding:5px 6px}.class-group{break-inside:auto;page-break-inside:auto}.class-total{break-inside:avoid;page-break-inside:avoid;margin:2mm 0 9mm;padding:5mm;border:2px solid #333;text-align:right;font-weight:800;font-size:15pt}.combined-total{break-inside:avoid;page-break-inside:avoid;margin-top:8mm;padding:7mm;border:3px double #222;text-align:right;font-size:19pt;font-weight:900}.print-title{text-align:center;border-bottom:2px solid #222;padding:0 0 6mm;margin-bottom:7mm}.bill-form tr{break-inside:avoid;page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo">🏫</div>
+  <h1>ShalaManch</h1>
+  <div class="tag">विद्यालयी कार्यों का डिजिटल मंच</div>
+  <div class="welcome">🙏 <b>स्वागत है</b><br>आपके विद्यालयी कार्यों को आसान और डिजिटल बनाने के लिए</div>
+</header>
+<nav class="nav">
+<button class="active" onclick="show('home',this)">🏠 Home</button>
+<button onclick="show('mdm',this)">🍲 MDM Bill</button>
+<button onclick="show('pdf',this)">📄 PDF Tools</button>
+<button onclick="show('image',this)">🖼️ Image Tools</button>
+</nav>
+<div class="wrap">
+
+<section id="home" class="page active">
+<div class="card hero"><h2>ShalaManch में आपका स्वागत है</h2><div class="muted">विद्यालयी काम, MDM बिल, PDF और Image utilities — एक ही मंच पर।</div></div>
+<div class="grid">
+<div class="card tool"><div class="icon">🍲</div><h3>MDM Bill Generator</h3><div class="muted">Beneficiary, rate और norms के अनुसार अलग-अलग firm bills बनाएं।</div><button class="btn" onclick="show('mdm')">Open MDM</button></div>
+<div class="card tool"><div class="icon">📄</div><h3>PDF Tools</h3><div class="muted">Compress, merge, split और PDF/Image conversion.</div><button class="btn secondary" onclick="show('pdf')">Open PDF</button></div>
+<div class="card tool"><div class="icon">🖼️</div><h3>Image Tools</h3><div class="muted">Compress, resize और passport photo utilities.</div><button class="btn secondary" onclick="show('image')">Open Image</button></div>
+</div>
+<div class="card coming" id="soon">
+<div class="section-title"><h2>🚀 Coming Soon — ShalaManch का अगला चरण</h2></div>
+<div class="muted" style="margin:6px 0 12px">नए विद्यालयी और उपयोगी digital tools धीरे-धीरे इसी मंच में जोड़े जाएंगे।</div>
+<div class="soon-grid">
+<div class="soon">📄 <b>School Documents</b><span class="badge">Coming Soon</span></div>
+<div class="soon">🧾 <b>Certificates & Formats</b><span class="badge">Coming Soon</span></div>
+<div class="soon">✍️ <b>Application Maker</b><span class="badge">Coming Soon</span></div>
+<div class="soon">📢 <b>Notice & Poster Maker</b><span class="badge">Coming Soon</span></div>
+<div class="soon">📚 <b>SA Paper / Question Paper</b><span class="badge">Coming Soon</span></div>
+<div class="soon">📊 <b>Excel School Tools</b><span class="badge">Coming Soon</span></div>
+<div class="soon">💰 <b>Income Tax Tools</b><span class="badge">Coming Soon</span></div>
+<div class="soon">👨‍🏫 <b>Teacher Utilities</b><span class="badge">Coming Soon</span></div>
+<div class="soon">🎓 <b>Student Tools</b><span class="badge">Coming Soon</span></div>
+</div>
+</div>
+
+</section>
+
+<section id="mdm" class="page">
+<div class="card hero"><h2>🍲 MDM Bill Generator</h2><div class="muted">Beneficiary और निर्धारित budget allocation के आधार पर flexible bill calculation.</div></div>
+<div class="card">
+<div class="section-title"><h2>🏫 School / Bill Details</h2></div>
+<div class="grid2">
+<div class="field"><label>School Name</label><input id="schoolName" placeholder="School Name"></div><div class="field"><label>UDISE Code</label><input id="udise" placeholder="UDISE Code"></div>
+<div class="field"><label>Block</label><input id="block" placeholder="Block"></div><div class="field"><label>District</label><input id="district" placeholder="District"></div>
+<div class="field"><label>Month</label><input id="month" type="month"></div><div class="field"><label>Bill Date</label><input id="billDate" type="date"></div>
+<div class="field"><label>Kirana Firm / फर्म</label><input id="kiranaFirm" placeholder="Kirana Firm Name"></div><div class="field"><label>Fruit & Vegetable Firm / फर्म</label><input id="fruitFirm" placeholder="Fruit & Vegetable Firm Name"></div>
+<div class="field"><label>Pisai Firm / फर्म</label><input id="pisaiFirm" placeholder="Pisai Firm Name"></div><div class="field"><label>Endhan / Gas Firm / फर्म</label><input id="gasFirm" placeholder="Endhan / Gas Firm Name"></div>
+<div class="field"><label>Headmaster / In-charge</label><input id="headmaster" placeholder="Name"></div>
+</div></div>
+<div class="card">
+<div class="section-title"><h2>1. 👥 Beneficiary Details</h2></div>
+<div class="grid2">
+<div class="field"><label>Primary Student-Days</label><input id="primary" type="number" min="0" value="368" oninput="calculate()"></div>
+<div class="field"><label>Upper Primary Student-Days</label><input id="upper" type="number" min="0" value="0" oninput="calculate()"></div>
+<div class="field"><label>कक्षा 1–5 Fruit Beneficiary Days</label><input id="fruitDays" type="number" min="0" value="72" oninput="calculate()"></div>
+<div class="field"><label>कक्षा 1–5 Wheat for Pisai (kg)</label><input id="wheat" type="number" min="0" step="0.01" value="21.6" oninput="calculate()"></div>
+<div class="field"><label>कक्षा 6–8 Fruit Beneficiary Days</label><input id="fruitDaysUpper" type="number" min="0" value="0" oninput="calculate()"></div>
+<div class="field"><label>कक्षा 6–8 Wheat for Pisai (kg)</label><input id="wheatUpper" type="number" min="0" step="0.01" value="0" oninput="calculate()"></div>
+</div><div class="muted">Beneficiary data बदलते ही quantity अपने-आप update होगी।</div></div>
+
+<div class="card">
+<div class="section-title"><h2>2. ⚙️ Bill Rate Settings</h2><button class="btn secondary" onclick="toggle('rates')">Edit Bill Rates</button></div>
+<div id="rates" class="grid2" style="margin-top:10px">
+<div class="field"><label>Primary Material ₹ / student-day</label><input id="primaryRate" type="number" step="0.01" value="6.78" oninput="calculate()"></div>
+<div class="field"><label>Upper Primary Material ₹ / student-day</label><input id="upperRate" type="number" step="0.01" value="10.17" oninput="calculate()"></div>
+<div class="field"><label>Dal ₹ / kg</label><input id="dalRate" type="number" value="100" oninput="calculate()"></div><div class="field"><label>Sabji ₹ / kg</label><input id="sabjiRate" type="number" value="30" oninput="calculate()"></div>
+<div class="field"><label>Oil ₹ / kg</label><input id="oilRate" type="number" value="140" oninput="calculate()"></div><div class="field"><label>Haldi ₹ / kg</label><input id="haldiRate" type="number" value="200" oninput="calculate()"></div>
+<div class="field"><label>Mirch ₹ / kg</label><input id="mirchRate" type="number" value="200" oninput="calculate()"></div><div class="field"><label>Dhaniya ₹ / kg</label><input id="dhaniyaRate" type="number" value="250" oninput="calculate()"></div>
+<div class="field"><label>Namak ₹ / kg</label><input id="namakRate" type="number" value="20" oninput="calculate()"></div><div class="field"><label>Jeera ₹ / kg</label><input id="jeeraRate" type="number" value="200" oninput="calculate()"></div>
+<div class="field"><label>Lahsun ₹ / kg</label><input id="lahsunRate" type="number" value="100" oninput="calculate()"></div><div class="field"><label>Fruit ₹ / kg</label><input id="fruitRate" type="number" value="35" oninput="calculate()"></div>
+<div class="field"><label>Gas Cylinder ₹</label><input id="gasRate" type="number" value="950" oninput="calculate()"></div><div class="field"><label>Gas Student-Days / Cylinder</label><input id="gasDays" type="number" value="1200" oninput="calculate()"></div>
+<div class="field"><label>Pisai ₹ / kg</label><input id="pisaiRate" type="number" value="3" oninput="calculate()"></div>
+</div></div>
+
+<div class="card">
+<div class="section-title"><h2>3. 📊 Share & Norm Settings</h2><button class="btn secondary" onclick="toggle('norms')">View / Edit Norms & Shares</button></div>
+<div id="norms" style="margin-top:10px">
+<div class="notice">Bill का कुल budget beneficiary के अनुसार तय रहेगा। Rate बदलने पर उसी item की quantity बदलेगी, ताकि संबंधित bill का total और overall budget allocation बना रहे।</div>
+<div class="grid2" style="margin-top:10px">
+<div class="field"><label>Dal norm — Primary kg/day</label><input id="dalNormP" value=".0200" oninput="calculate()"></div><div class="field"><label>Dal norm — Upper</label><input id="dalNormU" value=".0300" oninput="calculate()"></div>
+<div class="field"><label>Sabji norm — Primary kg/day</label><input id="sabjiNormP" value=".0450" oninput="calculate()"></div><div class="field"><label>Sabji norm — Upper</label><input id="sabjiNormU" value=".0700" oninput="calculate()"></div>
+<div class="field"><label>Oil norm</label><input id="oilNormP" value=".0050" oninput="calculate()"></div><div class="field"><label>Haldi norm</label><input id="haldiNormP" value=".00075" oninput="calculate()"></div>
+<div class="field"><label>Mirch norm</label><input id="mirchNormP" value=".00075" oninput="calculate()"></div><div class="field"><label>Dhaniya norm</label><input id="dhaniyaNormP" value=".00075" oninput="calculate()"></div>
+<div class="field"><label>Namak norm</label><input id="namakNormP" value=".0020" oninput="calculate()"></div><div class="field"><label>Jeera norm</label><input id="jeeraNormP" value=".0004" oninput="calculate()"></div>
+<div class="field"><label>Lahsun norm</label><input id="lahsunNormP" value=".00125" oninput="calculate()"></div><div class="field"><label>Fruit norm kg / beneficiary-day</label><input id="fruitNorm" value=".125" oninput="calculate()"></div>
+</div>
+</div></div>
+
+<div class="card">
+<div class="section-title"><h2>4. 🧾 कक्षा अनुसार अलग-अलग Bill Forms</h2></div>
+<div id="bills"></div>
+</div>
+<div class="card">
+<h2 style="margin:0 0 10px;font-size:18px">5. 💰 दोनों कक्षाओं का कुल Grand Total</h2>
+<div class="grand"><small>FINAL GRAND TOTAL</small><strong id="grandTotal">₹2,495</strong><span style="color:#5a9f39;font-weight:800">🟢 BILL READY</span></div>
+<div class="muted" style="margin-top:8px">Grand Total beneficiary के अनुसार वास्तविक allocation पर रहेगा और rounded figure में दिखेगा। Rate बदलने पर quantity उसी के अनुसार बदलेगी; bill total अपनी निर्धारित allocation के अनुसार रहेगा।</div>
+<div class="actions no-print"><button class="btn" onclick="calculate()">🔄 Recalculate Bill</button><button class="btn secondary" onclick="printBills()">🖨️ Print / Save PDF</button><button class="btn danger" onclick="resetMDM()">↻ Reset</button></div>
+</div>
+
+</section>
+
+<section id="pdf" class="page">
+<div class="card hero"><h2>📄 PDF Tools</h2><div class="muted">PDF files को browser में ही process करें — file server पर upload नहीं होती।</div></div>
+<div class="grid">
+<div class="card tool"><div class="icon">🗜️</div><h3>PDF Compress</h3><div class="muted">PDF pages को image-based optimized PDF में बदलकर size कम करने का प्रयास।</div><input id="pdfCompressFile" type="file" accept="application/pdf" style="margin-top:10px"><div class="field" style="margin-top:8px"><label>Quality (कम = छोटा file)</label><input id="pdfQuality" type="number" min="30" max="95" value="65"></div><button class="btn" onclick="compressPDF()">Compress & Download</button><div id="pdfCompressStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">🔗</div><h3>PDF Merge</h3><div class="muted">एक से अधिक PDF को एक file में जोड़ें।</div><input id="mergeFiles" type="file" accept="application/pdf" multiple style="margin-top:10px"><button class="btn" onclick="mergePDF()">Merge & Download</button><div id="mergeStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">✂️</div><h3>PDF Split</h3><div class="muted">चुने हुए page को अलग PDF में निकालें।</div><input id="splitFile" type="file" accept="application/pdf" style="margin-top:10px"><div class="field" style="margin-top:8px"><label>Page Number</label><input id="splitPage" type="number" min="1" value="1"></div><button class="btn" onclick="splitPDF()">Split & Download</button><div id="splitStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">🖼️</div><h3>PDF → Image</h3><div class="muted">PDF का selected page JPG image में बदलें।</div><input id="pdfImageFile" type="file" accept="application/pdf" style="margin-top:10px"><div class="field" style="margin-top:8px"><label>Page</label><input id="pdfImagePage" type="number" min="1" value="1"></div><button class="btn" onclick="pdfToImage()">Convert & Download</button><div id="pdfImageStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">📑</div><h3>Image → PDF</h3><div class="muted">एक या कई images से PDF बनाएं।</div><input id="imagesToPDF" type="file" accept="image/*" multiple style="margin-top:10px"><button class="btn" onclick="imagesToPDF()">Create & Download</button><div id="imagesPDFStatus" class="tool-result"></div></div>
+</div>
+</section>
+
+<section id="image" class="page">
+<div class="card hero"><h2>🖼️ Image Tools</h2><div class="muted">School-use images, passport photos और optimized JPG files बनाएं।</div></div>
+<div class="grid">
+<div class="card tool"><div class="icon">🗜️</div><h3>Image Compress</h3><div class="muted">Image quality और maximum width के अनुसार file छोटा करें।</div><input id="imgCompressFile" type="file" accept="image/*" style="margin-top:10px"><div class="grid2" style="margin-top:8px"><div class="field"><label>Quality %</label><input id="imgQuality" type="number" min="20" max="100" value="75"></div><div class="field"><label>Maximum Width</label><input id="imgMaxWidth" type="number" value="1600"></div></div><button class="btn" onclick="compressImage()">Compress & Download</button><div id="imgCompressStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">📐</div><h3>Image Resize</h3><div class="muted">Exact width और height के अनुसार image resize करें।</div><input id="resizeFile" type="file" accept="image/*" style="margin-top:10px"><div class="grid2" style="margin-top:8px"><div class="field"><label>Width</label><input id="resizeW" type="number" value="800"></div><div class="field"><label>Height</label><input id="resizeH" type="number" value="600"></div></div><button class="btn" onclick="resizeImage()">Resize & Download</button><div id="resizeStatus" class="tool-result"></div></div>
+<div class="card tool"><div class="icon">📸</div><h3>Passport Photo</h3><div class="muted">Photo को दिए गए dimensions में crop करके JPG बनाएं।</div><input id="passFile" type="file" accept="image/*" style="margin-top:10px"><div class="grid2" style="margin-top:8px"><div class="field"><label>Width</label><input id="passW" type="number" value="354"></div><div class="field"><label>Height</label><input id="passH" type="number" value="472"></div></div><button class="btn" onclick="passportPhoto()">Create & Download</button><div id="passStatus" class="tool-result"></div></div>
+</div>
+</section>
+</div>
+<footer><b>BALRAM MEENA</b><br>AKLA • KHINVSAR • NAGAUR<br>© 2026 ShalaManch</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function show(id,btn){
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ $(id).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+ if(btn)btn.classList.add('active'); else [...document.querySelectorAll('.nav button')].find(x=>x.getAttribute('onclick')?.includes("'"+id+"'"))?.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggle(id){$(id).style.display=$(id).style.display==='block'?'none':'block'}
+const n=id=>parseFloat($(id)?.value)||0, money=x=>'₹'+Math.round(x).toLocaleString('en-IN');
+const baseAlloc={kirana:1327,fruit:812,pisai:65,gas:291}; const baseTotal=2495.04;
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function item(name,qty,unit,rate,amount){return {name,qty,unit,rate,amount}}
+function computeClass(p,u,f,w,label){
+ const pr=n('primaryRate'),ur=n('upperRate');
+ const totalBudget=(p*pr)+(u*ur);
+ const scale=baseTotal?totalBudget/baseTotal:0;
+ const targets={kirana:baseAlloc.kirana*scale,fruit:baseAlloc.fruit*scale,pisai:baseAlloc.pisai*scale,gas:baseAlloc.gas*scale};
+ const rates={dal:n('dalRate'),sabji:n('sabjiRate'),oil:n('oilRate'),haldi:n('haldiRate'),mirch:n('mirchRate'),dhaniya:n('dhaniyaRate'),namak:n('namakRate'),jeera:n('jeeraRate'),lahsun:n('lahsunRate'),fruit:n('fruitRate'),gas:n('gasRate'),pisai:n('pisaiRate')};
+ const defaults={dal:100,sabji:30,oil:140,haldi:200,mirch:200,dhaniya:250,namak:20,jeera:200,lahsun:100,fruit:35,gas:950,pisai:3};
+ const changed=new Set(Object.keys(rates).filter(k=>Math.abs(rates[k]-defaults[k])>1e-9));
+ const pQty=n('dalNormP')*p+n('dalNormU')*u;
+ const common=(id)=>n(id)*(p+u);
+ const rows={
+  kirana:[
+   {name:'दाल',qty:pQty,key:'dal',unit:'kg',rate:rates.dal},
+   {name:'तेल',qty:common('oilNormP'),key:'oil',unit:'kg',rate:rates.oil},
+   {name:'हल्दी',qty:common('haldiNormP'),key:'haldi',unit:'kg',rate:rates.haldi},
+   {name:'मिर्च',qty:common('mirchNormP'),key:'mirch',unit:'kg',rate:rates.mirch},
+   {name:'धनिया',qty:common('dhaniyaNormP'),key:'dhaniya',unit:'kg',rate:rates.dhaniya},
+   {name:'नमक',qty:common('namakNormP'),key:'namak',unit:'kg',rate:rates.namak},
+   {name:'जीरा',qty:common('jeeraNormP'),key:'jeera',unit:'kg',rate:rates.jeera},
+   {name:'लहसुन',qty:common('lahsunNormP'),key:'lahsun',unit:'kg',rate:rates.lahsun}
+  ],
+  fruit:[
+   {name:'सब्जी',qty:n('sabjiNormP')*p+n('sabjiNormU')*u,key:'sabji',unit:'kg',rate:rates.sabji},
+   {name:'फल',qty:f*n('fruitNorm'),key:'fruit',unit:'kg',rate:rates.fruit}
+  ],
+  pisai:[{name:'गेहूँ की पिसाई',qty:w,key:'pisai',unit:'kg',rate:rates.pisai}],
+  gas:[{name:'Endhan / Gas',qty:(p+u)/(n('gasDays')||1),key:'gas',unit:'cylinder',rate:rates.gas}]
+ };
+ Object.values(rows).flat().forEach(x=>x.amount=x.qty*x.rate);
+ if(changed.size===0){
+   const kRaw=rows.kirana.reduce((s,x)=>s+x.amount,0),kDiff=targets.kirana-kRaw;
+   const a=rows.kirana.find(x=>x.key==='mirch'),b=rows.kirana.find(x=>x.key==='dhaniya');
+   if(a&&b){a.amount+=kDiff/2;b.amount+=kDiff/2;a.qty=a.amount/a.rate;b.qty=b.amount/b.rate;}
+ }
+ let current=Object.values(rows).flat().reduce((s,x)=>s+x.amount,0),diff=totalBudget-current;
+ const preferred=[];
+ if(!changed.has('sabji'))preferred.push(rows.fruit[0]);
+ if(!changed.has('fruit'))preferred.push(rows.fruit[1]);
+ if(!changed.has('gas'))preferred.push(rows.gas[0]);
+ const pool=preferred.reduce((s,x)=>s+Math.abs(x.amount),0);
+ if(Math.abs(diff)>0.000001&&pool>0){preferred.forEach(x=>{const delta=diff*(x.amount/pool);x.amount+=delta;x.qty=x.amount/x.rate;});diff=0;}
+ if(Math.abs(diff)>0.000001){const kPool=rows.kirana.filter(x=>!changed.has(x.key)),kSum=kPool.reduce((s,x)=>s+x.amount,0);if(kSum>0){kPool.forEach(x=>{const delta=diff*(x.amount/kSum);x.amount+=delta;x.qty=x.amount/x.rate;});diff=0;}}
+ if(Math.abs(diff)>0.000001){const x=rows.kirana.find(x=>!changed.has(x.key))||rows.gas[0];x.amount+=diff;x.qty=x.amount/x.rate;}
+ const firmIds={kirana:'kiranaFirm',fruit:'fruitFirm',pisai:'pisaiFirm',gas:'gasFirm'};
+ const forms=[['KIRANA / सामग्री BILL','kirana',rows.kirana,'Kirana Total'],['FRUIT + VEGETABLE BILL','fruit',rows.fruit,'Fruit + Vegetable Total'],['PISAI BILL','pisai',rows.pisai,'Pisai Total'],['ENDHAN / GAS BILL','gas',rows.gas,'Endhan / Gas Total']];
+ const html=forms.map(([title,key,arr,totalLabel],idx)=>{
+  const tot=arr.reduce((s,x)=>s+x.amount,0),firm=$(firmIds[key]).value||'—';
+  const billNo=`${label==='कक्षा 1–5'?'P':'U'}-${idx+1}`;
+  return `<div class="bill-form"><div style="text-align:center;border-bottom:1px solid #999;padding-bottom:7px;margin-bottom:8px"><div style="font-size:11px;font-weight:800;letter-spacing:.5px">${title}</div><h3 style="font-size:19px;margin:4px 0">${esc(firm)}</h3><div style="display:flex;justify-content:space-between;font-size:11px"><span>Bill No.: ${billNo}</span><span>Date: ${esc($('billDate').value||'—')}</span></div></div><table><thead><tr><th>क्र.</th><th>सामग्री</th><th>मात्रा</th><th>इकाई</th><th>Rate ₹</th><th>राशि ₹</th></tr></thead><tbody>${arr.map((x,i)=>`<tr><td>${i+1}</td><td>${x.name}</td><td>${(Math.round(x.qty*100)/100).toFixed(2)}</td><td>${x.unit}</td><td>${money(x.rate)}</td><td>${money(x.amount)}</td></tr>`).join('')}<tr class="totalrow"><td colspan="5">${totalLabel}</td><td>${money(tot)}</td></tr></tbody></table><div style="display:flex;justify-content:flex-end;margin-top:22px;font-size:11px">फर्म प्रतिनिधि हस्ताक्षर: __________________</div></div>`;
+ }).join('');
+ return {label,totalBudget,html};
+}
+function calculate(){
+ const primary=computeClass(n('primary'),0,n('fruitDays'),n('wheat'),'कक्षा 1–5');
+ const upper=computeClass(0,n('upper'),n('fruitDaysUpper'),n('wheatUpper'),'कक्षा 6–8');
+ $('bills').innerHTML=`<section class="class-group"><div style="padding:10px 12px;margin:8px 0;background:#ede7fb;border-radius:12px"><h3 style="margin:0">📘 कक्षा 1–5 (Primary)</h3><div class="muted">चार अलग-अलग फर्म बिल</div></div>${primary.html}<div class="class-total">कक्षा 1–5 Grand Total: ${money(primary.totalBudget)}</div></section><section class="class-group"><div style="padding:10px 12px;margin:8px 0;background:#e8f2ff;border-radius:12px"><h3 style="margin:0">📗 कक्षा 6–8 (Upper Primary)</h3><div class="muted">चार अलग-अलग फर्म बिल</div></div>${upper.html}<div class="class-total">कक्षा 6–8 Grand Total: ${money(upper.totalBudget)}</div></section>`;
+ $('grandTotal').textContent=money(primary.totalBudget+upper.totalBudget);
+ $('primaryGrandInline')?.replaceChildren(document.createTextNode(money(primary.totalBudget)));
+ $('upperGrandInline')?.replaceChildren(document.createTextNode(money(upper.totalBudget)));
+ saveState();
+}
+function saveState(){try{const o={};document.querySelectorAll('#mdm input:not([type="file"])').forEach(el=>{if(el.id)o[el.id]=el.value});localStorage.setItem('shalamanch_mdm_v2',JSON.stringify(o));}catch(e){}}
+function loadState(){try{const o=JSON.parse(localStorage.getItem('shalamanch_mdm_v2')||'{}');Object.entries(o).forEach(([id,v])=>{if($(id))$(id).value=v;});}catch(e){}}
+function resetMDM(){if(!confirm('सभी MDM विवरण और दरें default पर reset करें?'))return;localStorage.removeItem('shalamanch_mdm_v2');location.reload();}
+function printBills(){
+ const clone=$('bills').cloneNode(true);
+ const combined=$('grandTotal').textContent;
+ document.body.innerHTML=`<main style="font-family:Arial,'Noto Sans Devanagari',sans-serif;color:#111"><div class="print-title"><h2 style="margin:0 0 5px">MDM / PM POSHAN BILL</h2><div>${esc($('month').value||'')} &nbsp; | &nbsp; दिनांक: ${esc($('billDate').value||'')}</div></div>${clone.innerHTML}<div class="combined-total">दोनों कक्षाओं का संयुक्त Grand Total: ${combined}</div></main>`;
+ window.print();setTimeout(()=>location.reload(),700);
+}
+
+function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1200)}
+function readFile(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsArrayBuffer(file)})}
+function loadImage(file){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);im.onerror=rej;im.src=URL.createObjectURL(file)})}
+function canvasBlob(canvas,q=0.75){return new Promise(res=>canvas.toBlob(res,'image/jpeg',q))}
+async function compressImage(){
+ const f=$('imgCompressFile').files[0]; if(!f)return alert('पहले image चुनें');
+ const im=await loadImage(f), max=n('imgMaxWidth')||1600, scale=Math.min(1,max/im.width);
+ const c=document.createElement('canvas');c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+ const b=await canvasBlob(c,Math.min(1,Math.max(.2,n('imgQuality')/100)));downloadBlob(b,'ShalaManch_compressed.jpg');$('imgCompressStatus').textContent=`Done • ${Math.round(b.size/1024)} KB`;
+}
+async function resizeImage(){
+ const f=$('resizeFile').files[0];if(!f)return alert('पहले image चुनें');const im=await loadImage(f),c=document.createElement('canvas');c.width=n('resizeW');c.height=n('resizeH');c.getContext('2d').drawImage(im,0,0,c.width,c.height);const b=await canvasBlob(c,.9);downloadBlob(b,'ShalaManch_resized.jpg');$('resizeStatus').textContent='Download तैयार है।';
+}
+async function passportPhoto(){
+ const f=$('passFile').files[0];if(!f)return alert('पहले photo चुनें');const im=await loadImage(f),tw=n('passW')||354,th=n('passH')||472,ratio=tw/th,ir=im.width/im.height;let sx=0,sy=0,sw=im.width,sh=im.height;if(ir>ratio){sw=im.height*ratio;sx=(im.width-sw)/2}else{sh=im.width/ratio;sy=(im.height-sh)/2}const c=document.createElement('canvas');c.width=tw;c.height=th;c.getContext('2d').drawImage(im,sx,sy,sw,sh,0,0,tw,th);const b=await canvasBlob(c,.9);downloadBlob(b,'ShalaManch_passport_photo.jpg');$('passStatus').textContent='Passport photo तैयार है।';
+}
+async function mergePDF(){
+ const fs=[...$('mergeFiles').files];if(fs.length<2)return alert('कम से कम 2 PDF चुनें');const out=await PDFLib.PDFDocument.create();for(const f of fs){const src=await PDFLib.PDFDocument.load(await readFile(f));const pages=await out.copyPages(src,src.getPageIndices());pages.forEach(p=>out.addPage(p))}downloadBlob(new Blob([await out.save()],{type:'application/pdf'}),'ShalaManch_merged.pdf');$('mergeStatus').textContent='Merged PDF download हो गया।';
+}
+async function splitPDF(){
+ const f=$('splitFile').files[0];if(!f)return alert('PDF चुनें');const src=await PDFLib.PDFDocument.load(await readFile(f));const idx=n('splitPage')-1;if(idx<0||idx>=src.getPageCount())return alert('Page number सही दें');const out=await PDFLib.PDFDocument.create();const [p]=await out.copyPages(src,[idx]);out.addPage(p);downloadBlob(new Blob([await out.save()],{type:'application/pdf'}),'ShalaManch_split_page.pdf');$('splitStatus').textContent='Page अलग करके download हो गया।';
+}
+async function imagesToPDF(){
+ const fs=[...$('imagesToPDF').files];if(!fs.length)return alert('Images चुनें');const {jsPDF}=window.jspdf;let doc=null;for(const f of fs){const im=await loadImage(f);const ratio=im.width/im.height;let w=210,h=w/ratio;if(h>297){h=297;w=h*ratio}if(!doc)doc=new jsPDF({unit:'mm',format:'a4'});else doc.addPage();const c=document.createElement('canvas');c.width=im.width;c.height=im.height;c.getContext('2d').drawImage(im,0,0);doc.addImage(c.toDataURL('image/jpeg',.88),'JPEG',(210-w)/2,(297-h)/2,w,h)}doc.save('ShalaManch_images.pdf');$('imagesPDFStatus').textContent='PDF download हो गया।';
+}
+async function pdfToImage(){
+ const f=$('pdfImageFile').files[0];if(!f)return alert('PDF चुनें');const data=await readFile(f);const pdf=await window.pdfjsLib.getDocument({data}).promise;const pg=n('pdfImagePage');if(pg<1||pg>pdf.numPages)return alert('Page number सही दें');const page=await pdf.getPage(pg);const vp=page.getViewport({scale:2});const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;c.toBlob(b=>downloadBlob(b,'ShalaManch_pdf_page.jpg'),'image/jpeg',.9);$('pdfImageStatus').textContent='JPG download हो गया।';
+}
+async function compressPDF(){
+ const f=$('pdfCompressFile').files[0];if(!f)return alert('PDF चुनें');$('pdfCompressStatus').textContent='Processing…';const data=await readFile(f);const pdf=await window.pdfjsLib.getDocument({data}).promise;const {jsPDF}=window.jspdf;let doc=null;const q=Math.min(.95,Math.max(.3,n('pdfQuality')/100));for(let i=1;i<=pdf.numPages;i++){const page=await pdf.getPage(i);const vp=page.getViewport({scale:.9});const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;const img=c.toDataURL('image/jpeg',q);const w=210,h=w/(vp.width/vp.height);if(!doc)doc=new jsPDF({unit:'mm',format:'a4',compress:true});else doc.addPage();doc.addImage(img,'JPEG',(210-w)/2,(297-h)/2,w,h,undefined,'FAST')}const blob=doc.output('blob');downloadBlob(blob,'ShalaManch_compressed.pdf');$('pdfCompressStatus').textContent=`Done • ${Math.round(blob.size/1024)} KB`;
+}
+window.pdfjsLib=window.pdfjsLib||null;
+document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+<script type="module">
+import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
+window.pdfjsLib=pdfjsLib;
+document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+<script>
+loadState();if(!$('billDate').value){let d=new Date();$('billDate').value=d.toISOString().slice(0,10)}if(!$('month').value){let d=new Date();$('month').value=d.toISOString().slice(0,7)}calculate();
+document.querySelectorAll('#mdm input:not([type=\"file\"])').forEach(el=>el.addEventListener('change',saveState));
+</script>
+</body></html>
